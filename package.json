@@ -37,13 +37,13 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "method-override": "^2.3.9",
+    "@types/mssql": "^6.0.1",
     "body-parser": "^1.17.1",
     "cors": "^2.8.5",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.15.0",
-    "oracledb": "^4.0.1",
+    "method-override": "^2.3.9",
+    "mssql": "^6.2.0",
     "swagger-ui-express": "^4.1.2",
     "typeorm": "^0.2.0"
   },

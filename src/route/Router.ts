@@ -1,27 +1,28 @@
-import { EmployeeController } from "../controller/EmployeeController";
+import { ExecutiveController } from "../controller/ExecutiveController";
 
 export class Router {
 
     private routes: any;
-    private employeeController:EmployeeController;
+    private executiveController: ExecutiveController;
 
     constructor(){
-        this.employeeController = new EmployeeController();
+        this.executiveController = new ExecutiveController();
     }
 
     public init(express: any) {
         this.routes = express.Router();
 
-        this.routes.route('/employees')
-        .get(this.employeeController.getEmployees);
+        this.routes.route('/ejecutivos/auth/sesion')
+        .post(this.executiveController.validate);
 
-        this.routes.route('/employees')
-        .post(this.employeeController.createEmployee);
+        this.routes.route('/ejecutivos/auth/claves')
+        .post(this.executiveController.refresh);
 
-        this.routes.route('/employees/:id')
-        .get(this.employeeController.getEmployeeById)
-        .delete(this.employeeController.deleteEmployee)
-        .put(this.employeeController.updateEmployee)
+        this.routes.route('/ejecutivos')
+        .get(this.executiveController.getExecutive)
+        .post(this.executiveController.createExecutive);
+
+        // TODO: UPDATE EXECUTIVE PASSWORD SERVICE
     }
 
     public getRoutes(){

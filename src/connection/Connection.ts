@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import {Connection, createConnection} from "typeorm";
-import { Employee } from "../model/Employee";
+import { Executive } from "../model/Executive";
+import {Code} from "../model/Code";
 
 export class Repository {
 
@@ -18,11 +19,13 @@ export class Repository {
                     port: parseInt(process.env.port),
                     username: process.env.username,
                     password: process.env.password,
-                    sid: process.env.sid,
+                    schema: process.env.schema,
                     database : process.env.database,
                     entities : [
-                        Employee
+                        Executive,
+                        Code
                     ],
+                    autoSchemaSync: true,
                     synchronize : false,
                     logging : true
                 }
