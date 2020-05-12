@@ -23,18 +23,6 @@ export class ExecutiveController {
         });
     }
 
-    public getEmployeeById = (req: Request , res: Response ) => {
-        let employeeId:number =  parseInt(req.params.id);
-        this.executiveService.getExecutiveByID(employeeId)
-        .then((employees:Executive) => {
-            HTTPResponseHandler.sendSuccess(res , employees);
-        })
-        .catch((err) => {
-            console.log(err);
-            HTTPResponseHandler.sendInternalError(res , err , null)
-        });
-    }
-
     public getExecutive = (req: Request , res: Response ) => {
         
         this.executiveService.getExecutive()
@@ -47,12 +35,29 @@ export class ExecutiveController {
         });
     }
 
-    public validate = (req: Request, res: Response) => {
-
+    public validateExecutive = (req: Request, res: Response) => {
+        const credencials = req.body;
+        this.executiveService.validate(credencials)
+        .then((executive:any) => {
+            HTTPResponseHandler.sendSuccess(res , executive);
+        })
+        .catch((err) => {
+            console.log(err);
+            HTTPResponseHandler.sendInternalError(res , err , null)
+        })
     }
 
-    public refresh = (req: Request, res: Response) => {
-        
+    public updateExecutive = (req: Request , res : Response) => {
+        let executiveID:number = parseInt(req.params.id);
+        let employee: any = req.body;
+        this.executiveService.updateExecutive(executiveID , employee)
+        .then((response:any) => {
+            HTTPResponseHandler.sendEmpty(res);
+        })
+        .catch((err) => {
+            console.log(err);
+            HTTPResponseHandler.sendInternalError(res , err , null)  
+        });
     }
    
 }
