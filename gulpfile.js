@@ -41,14 +41,14 @@ gulp.task('start', () => {
 		ext: 'js',
 		env: {
 			'NODE_ENV': 'development',
-			'type': "mssql",
-			'host': "localhost",
+			'type': "mssql", 
+			'host': "localhost", 
 			'port': '1433',
 			'username': "sa",
 			'password': "Testing!",
 			'database': "master",
 			"schema":'dbo',
-			"JWT_SECRET" : 'my_secret_key'
+			"JWT_SECRET" : 'a!s!e-v!e!n!t!a!s'
 		}
 
 	});

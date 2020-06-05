@@ -2,7 +2,7 @@ import {App} from "./App";
 
 const http = require('http');
 const express = new App().getExpress();
-const port = 8000;
+const port = 8080;
 express.set('port', port);
 
 const onError = (error: NodeJS.ErrnoException): void => {

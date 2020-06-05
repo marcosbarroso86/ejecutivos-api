@@ -37,6 +37,7 @@ export class ExecutiveController {
 
     public validateExecutive = (req: Request, res: Response) => {
         const credencials = req.body;
+        console.log(credencials);
         this.executiveService.validate(credencials)
         .then((executive:any) => {
             HTTPResponseHandler.sendSuccess(res , executive);
@@ -48,7 +49,7 @@ export class ExecutiveController {
     }
 
     public updateExecutive = (req: Request , res : Response) => {
-        let executiveID:number = parseInt(req.params.id);
+       /*  let executiveID:number = parseInt(req.params.id);
         let employee: any = req.body;
         this.executiveService.updateExecutive(executiveID , employee)
         .then((response:any) => {
@@ -57,7 +58,7 @@ export class ExecutiveController {
         .catch((err) => {
             console.log(err);
             HTTPResponseHandler.sendInternalError(res , err , null)  
-        });
+        }); */
     }
    
 }

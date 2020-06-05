@@ -1,10 +1,10 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { Code } from "./Code";
 
-@Entity({name:'EJECUTIVO'})
+@Entity({name:'EJECUTIVO_VENTA'})
 export class Executive {
 
-    @PrimaryGeneratedColumn({name:"EJECUTIVO_ID"})
+    @PrimaryGeneratedColumn({name:"EJECUTIVO_VENTA_ID"})
     public id: number;
 
     @Column({name:"NOMBRE"})
@@ -13,7 +13,7 @@ export class Executive {
     @Column({name:"APELLIDO"})
     public lastName: string;
     
-    @Column({name : 'PASSWORD'})
+    @Column({name : 'PASS'})
     public password: string    
 
     @Column({name : 'CUIL'})
@@ -23,11 +23,19 @@ export class Executive {
     public email: string    
     
     @Column({name : 'RED'})
-    public network: string    
+    public network: string   
+    
+    @Column({name : 'SEXO'})
+    public gender: string   
 
     @Column({name : 'ZONA_FILIAL'})
-    public filialZone: string    
+    public filialZone: string
     
+    @Column({name : 'ACTIVO'})
+    public active: number;
+    
+    @Column({name : 'BLOQUEADO'})
+    public locked: number;    
 }
 
 

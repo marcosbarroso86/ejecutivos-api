@@ -28,7 +28,6 @@ export class Router {
         this.routes.route('/ejecutivos')
         .get(this.executiveController.getExecutive)
         .post(this.executiveController.createExecutive)
-        
 
     }
 

@@ -20,16 +20,16 @@ export class ExecutiveService {
 
     public validate = async (credencials:any) => {
         const executiveRepository = await this.getRepository();
-        const res = await executiveRepository.findOne({where : { email : credencials.email}})
+        const res = await executiveRepository.findOne({where : { password : credencials.password}})
         
         if (!res) { throw this.INVALID_CREDENCIALS }
 
         const bytes  = CryptoJS.AES.decrypt(res.password, process.env.JWT_SECRET);
-        const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+        const decryptedData = bytes.toString(CryptoJS.enc.Utf8); 
 
-        if (decryptedData !== credencials.password) {
+         if (res.password !== credencials.password) {
             throw this.INVALID_CREDENCIALS;
-        }
+        } 
         return res;
     }
 
@@ -41,7 +41,7 @@ export class ExecutiveService {
 
     public createExecutive = async (executive:Executive) => {
         let response:any;
-        try {
+        
             const conexion = await Repository.getConnection();
             await getConnection(conexion.name).transaction(async transactionalEntityManager => {
 
@@ -50,17 +50,12 @@ export class ExecutiveService {
 
                 const result = await transactionalEntityManager.getRepository(Executive).save(executive);
                 const random = CodeHandler.generate();
-                const code:any = {code : random , executive : result };
+                const code:any = {code : random , executive : result, creationDate: new Date() };
 
                 response = await transactionalEntityManager
                     .getRepository(Code).save(code);
                 }
             )
-
-        } catch (error) {
-            console.log(error);
-            throw new HttpRequestError(HttpRequestError.ERROR_TYPE + " " + error);
-        }
         return response;
     }
 
