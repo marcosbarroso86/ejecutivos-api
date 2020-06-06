@@ -41,32 +41,27 @@ export class ExecutiveService {
 
     public createExecutive = async (executive:Executive) => {
         let response:any;
-        
-            const conexion = await Repository.getConnection();
-            await getConnection(conexion.name).transaction(async transactionalEntityManager => {
+        const conexion = await Repository.getConnection();
+        await getConnection(conexion.name).transaction(async transactionalEntityManager => {
 
-                const ciphertext = CryptoJS.AES.encrypt(executive.password, process.env.JWT_SECRET).toString();
-                executive.password = ciphertext;
+            const ciphertext = CryptoJS.AES.encrypt(executive.password, process.env.JWT_SECRET).toString();
+            executive.password = ciphertext;
 
-                const result = await transactionalEntityManager.getRepository(Executive).save(executive);
-                const random = CodeHandler.generate();
-                const code:any = {code : random , executive : result, creationDate: new Date() };
+            const result = await transactionalEntityManager.getRepository(Executive).save(executive);
+            const random = CodeHandler.generate();
+            const code:any = {code : random , executive : result, creationDate: new Date() };
 
-                response = await transactionalEntityManager
-                    .getRepository(Code).save(code);
-                }
-            )
+            response = await transactionalEntityManager
+                .getRepository(Code).save(code);
+            }
+        )
         return response;
     }
 
     public updateEmployee = async (executiveID:number , executive:Executive) => {
         const executiveRepository = await this.getRepository();
         let response:any;
-        try {
-            response = await executiveRepository.update(executiveID , executive ) ; 
-        } catch (error) {
-            throw new HttpRequestError(HttpRequestError.ERROR_TYPE + " " + error);  
-        }
+        response = await executiveRepository.update(executiveID , executive ) ; 
         return response;
     }
 
