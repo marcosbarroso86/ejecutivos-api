@@ -45,10 +45,11 @@ export class ExecutiveService {
             const conexion = await Repository.getConnection();
             await getConnection(conexion.name).transaction(async transactionalEntityManager => {
 
-                const ciphertext = CryptoJS.AES.encrypt(executive.password, process.env.JWT_SECRET).toString();
+                const ciphertext = CryptoJS.AES.encrypt(executive.password, "process.env.JWT_SECRET").toString();
                 executive.password = ciphertext;
 
                 const result = await transactionalEntityManager.getRepository(Executive).save(executive);
+                console.log(executive)
                 const random = CodeHandler.generate();
                 const code:any = {code : random , executive : result, creationDate: new Date() };
 

@@ -23,19 +23,44 @@ describe("Reportes de ejecutivos", () => {
       
     const endpoint = "/api";
 
-    it("GET /ejecutivos todosLosejecutivos", async () => {
+    const executivebody ={
+
+      lastName: "Per",
+      firstName : "Maxi",
+      password: "1",
+      cuil: "203353",
+      email : "m.pe",
+      network: "h",
+      gender : "m",
+      filialZone: "zon",
+      active: "1",
+      locked: "0"
+    }
+
+     it("GET /ejecutivos todosLosejecutivos", async () => {
+      const resourse = '/ejecutivos';
+       const options = {
+         method: 'GET',
+         uri: base_url+endpoint+resourse
+        
+       };
+       const response  = await asyncRequest(options);
+       assert.equal(response.response.statusCode, 200);
+     
+     });
+
+    it("POST /ejecutivos createExecutive", async () => {
       const resourse = '/ejecutivos';
       const options = {
-        method: 'GET',
-        uri: base_url+endpoint+resourse
-        
-      };
+        method: 'POST',
+        uri: base_url+endpoint+resourse,
+        body: executivebody,
+        json: true
+        };
       const response  = await asyncRequest(options);
-      assert.equal(response.response.statusCode, 200);
+      assert.equal(response.response.statusCode, 201);
      
     });
-
-    // Agregar POST
   
 
     });
@@ -46,7 +71,7 @@ const asyncRequest = async (value) => {
   return new Promise((resolve, reject) => {
        request(value, (error, response, data) => {
           if(error) reject(error)
-          else resolve({response, data: (data)? JSON.parse(data) : undefined })
+          else resolve({response, data: (data)? data : undefined })
           })
          })
 }

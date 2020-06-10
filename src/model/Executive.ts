@@ -7,11 +7,11 @@ export class Executive {
     @PrimaryGeneratedColumn({name:"EJECUTIVO_VENTA_ID"})
     public id: number;
 
-    @Column({name:"NOMBRE"})
-    public firstName: string;
-
     @Column({name:"APELLIDO"})
     public lastName: string;
+
+    @Column({name:"NOMBRE"})
+    public firstName: string;
     
     @Column({name : 'PASS'})
     public password: string    
@@ -22,11 +22,11 @@ export class Executive {
     @Column({name : 'EMAIL'})
     public email: string    
     
-    @Column({name : 'RED'})
-    public network: string   
-    
     @Column({name : 'SEXO'})
     public gender: string   
+
+    @Column({name : 'RED'})
+    public network: string   
 
     @Column({name : 'ZONA_FILIAL'})
     public filialZone: string
