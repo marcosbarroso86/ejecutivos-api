@@ -35,17 +35,8 @@ describe("Reportes de ejecutivos", () => {
      
     });
 
-    // it("GET /ejecutivos ejecutivo", async () => {
-    //   const resourse = '/ejecutivos/';
-    //   const options = {
-    //     method: 'GET',
-    //     uri: base_url+endpoint+resourse
-    //   };
-    //   const response  = await asyncRequest(options);
-    //   console.log(response);
-    //   assert.equal(response.response.statusCode, 200);
-
-    // });
+    // Agregar POST
+  
 
     });
 
