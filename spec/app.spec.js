@@ -1,18 +1,61 @@
 var request = require("request");
+const assert = require('chai').assert;
+const base_url = "http://localhost:8081";
 
-var base_url = "http://localhost:8888/api/"
+// Para realiar las pruebas en produccion se debe descomentar 
+//const Server, before y after
 
-describe("Auditoria de Terreno Server", () => {
+//const Server = require("../src/server.ts");
 
-    describe("GET /employee", () => {
+describe("Reportes de ejecutivos", () => {
+  var server;
+  
+//   before(function () {
+//     server = Server
+
+//   });
+  
+//   after(function () {
+//     server.close();
+//   });
+
+  describe("ejecutivos", () => {
+      
+    const endpoint = "/api";
+
+    it("GET /ejecutivos todosLosejecutivos", async () => {
+      const resourse = '/ejecutivos';
+      const options = {
+        method: 'GET',
+        uri: base_url+endpoint+resourse
         
-        const resource = "employee";
+      };
+      const response  = await asyncRequest(options);
+      assert.equal(response.response.statusCode, 200);
+     
+    });
 
-        it("returns status code 200", () => {
-            request.get( base_url + resource, (error, response, body) => {
-                expect(response.statusCode).toBe(200);
-            });
-        });
+    // it("GET /ejecutivos ejecutivo", async () => {
+    //   const resourse = '/ejecutivos/';
+    //   const options = {
+    //     method: 'GET',
+    //     uri: base_url+endpoint+resourse
+    //   };
+    //   const response  = await asyncRequest(options);
+    //   console.log(response);
+    //   assert.equal(response.response.statusCode, 200);
+
+    // });
 
     });
-});
+
+ });
+
+const asyncRequest = async (value) => {
+  return new Promise((resolve, reject) => {
+       request(value, (error, response, data) => {
+          if(error) reject(error)
+          else resolve({response, data: (data)? JSON.parse(data) : undefined })
+          })
+         })
+}

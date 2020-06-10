@@ -40,7 +40,7 @@ export class App {
         this.express.use('/api', this.router.getRoutes());
 
         //Configurar documento swagger antes de descomentar
-        //this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+        this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     }
 
     public getExpress:Function = () => {

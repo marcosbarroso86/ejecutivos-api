@@ -2,7 +2,7 @@ import {App} from "./App";
 
 const http = require('http');
 const express = new App().getExpress();
-const port = 8080;
+const port = 8081;
 express.set('port', port);
 
 const onError = (error: NodeJS.ErrnoException): void => {
@@ -32,3 +32,5 @@ const server = http.createServer(express);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+module.exports = server;

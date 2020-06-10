@@ -36,19 +36,18 @@ gulp.task('clean:temporal', () => {
 
 gulp.task('start', () => {
 	let stream = nodemon({
-		exec: 'node --inspect',
+		exec: 'node --inspect=7000',
 		script: config.server.src,
 		ext: 'js',
 		env: {
 			'NODE_ENV': 'development',
-			'type': "mssql", 
-			'host': "localhost", 
-			'port': '1433',
-			'username': "sa",
-			'password': "Testing!",
-			'database': "master",
-			"schema":'dbo',
-			"JWT_SECRET" : 'a!s!e-v!e!n!t!a!s'
+			'DB_TYPE': 'mssql',
+			'BD_HOST': 'NEWNT11.ase.local',
+			'DB_PORT': 1500,
+			'DB_USER': 'usrappventas_app',
+			'DB_PASS': '75atzCXNZdOZTBCg',
+			'DB_NAME' : 'opdevase_desa', //DATABASE
+			'DB_SCHEMA' : 'ventas',
 		}
 
 	});
@@ -80,3 +79,5 @@ gulp.task('compile-desa', () => {
 gulp.task('default', gulp.series(config.clean.name, gulp.parallel('build', 'swaggerFile')));
 gulp.task('prod', gulp.series(config.clean.name, gulp.parallel('build', 'swaggerFile')));
 gulp.task('start-dev', gulp.series(config.clean.name, gulp.parallel('build-desa', 'swaggerFile'), 'start'));
+
+

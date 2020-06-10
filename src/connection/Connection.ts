@@ -14,13 +14,13 @@ export class Repository {
             } else {
 
                 let options:any = {
-                    type: process.env.type,
-                    host: process.env.host,
-                    port: parseInt(process.env.port),
-                    username: process.env.username,
-                    password: process.env.password,
-                    schema: process.env.schema,
-                    database : process.env.database,
+                    type: process.env.DB_TYPE,
+                    host: process.env.BD_HOST,
+                    port: parseInt(process.env.DB_PORT),
+                    username: process.env.DB_USER,
+                    password: process.env.DB_PASS,
+                    database : process.env.DB_NAME,
+                    schema : process.env.DB_SCHEMA,
                     entities : [
                         Executive,
                         Code

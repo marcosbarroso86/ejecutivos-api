@@ -32,25 +32,28 @@
     "gulp-plumber": "^1.2.1",
     "gulp-terser": "^1.2.0",
     "gulp-typescript": "^5.0.1",
-    "jasmine": "^3.5.0",
+    "ts-mocha": "^7.0.0",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
     "@types/mssql": "^6.0.1",
-    "@types/node": "^14.0.1",
+    "@types/node": "^14.0.11",
     "body-parser": "^1.17.1",
+    "chai": "^4.2.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.0.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^2.3.9",
+    "mocha": "^7.2.0",
     "mssql": "^6.2.0",
+    "request": "^2.88.2",
     "swagger-ui-express": "^4.1.2",
     "typeorm": "^0.2.0"
   },
   "scripts": {
     "start": "node dist/server.js",
     "build": "node node_modules/gulp/bin/gulp.js prod",
-    "test": "node node_modules/jasmine/bin/jasmine.js"
+    "test": "node node_modules/ts-mocha/bin/ts-mocha --timeout 10000 ./spec/app.spec.js"
   }
 }
