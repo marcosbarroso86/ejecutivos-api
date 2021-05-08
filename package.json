@@ -46,7 +46,7 @@
     "method-override": "^2.3.9",
     "mssql": "^6.2.0",
     "swagger-ui-express": "^4.1.2",
-    "typeorm": "^0.2.0"
+    "typeorm": "^0.2.25"
   },
   "scripts": {
     "start": "node dist/server.js",
